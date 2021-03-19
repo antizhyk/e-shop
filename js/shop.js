@@ -12,7 +12,7 @@ funcSwitch.addEventListener('click', () => {
 })
 
 
-function handleTabletChange(e) {
+/* function handleTabletChange(e) {
     if (e.matches) {
         funcSwitch.style.display = 'none';
         funcWrap.classList.add('content__grid')
@@ -23,8 +23,30 @@ function handleTabletChange(e) {
     }
 }
 mediaQuery.addListener(handleTabletChange)
-handleTabletChange(mediaQuery)
+handleTabletChange(mediaQuery) */
 //=====================/ПЕРЕКЛЮЧЕНИЕ СЕТКА-СПИСОК=============
+//=====================/Перемещение элемента=============
+/* const contentBlock = document.querySelectorAll('.content__item');
+
+
+
+contentBlock.forEach(el => {
+    console.log(el.children);
+    for (let i = 0; i < el.children.length; i++) {
+        if (el.children[i].classList.contains('content__picture')) {
+            console.log(el.children[i + 1]);
+            children[i + 1].prepend(el.children[i]);
+        }
+
+    }
+    el.children.forEach(item => {
+        console.log(item);
+        if (item.classList.contains('content__picture')) {
+            console.log(item);
+        }
+    })
+}) */
+//=====================/Перемещение элемента=============
 
 var ua = window.navigator.userAgent;
 var msie = ua.indexOf("MSIE ");
@@ -99,17 +121,26 @@ if (iconMenu != null) {
 			body_lock(delay);
 			iconMenu.classList.toggle("_active");
 			menuBody.classList.toggle("_active");
-			document.querySelector('.header__logo-text').classList.toggle('header__logo_w');
-			document.querySelector('.header__logo-svg').classList.toggle('header__logo_w');
-			if (spollerList && spollerList.classList.contains('active')) {
-				spollerList.classList.remove('active');
-				spollerTitle.classList.remove('arrow');
-				let interval = setInterval(() => {
-					spollerList.style.opacity = 0;
-				}, 100);
-				setTimeout(() => {
-					clearInterval(interval);
-				}, 101);
+			if (document.querySelector('.header__logo-text')) {
+				document.querySelector('.header__logo-text').classList.toggle('header__logo_w');
+			}
+			if (document.querySelector('.header__logo-svg')) {
+				document.querySelector('.header__logo-svg').classList.toggle('header__logo_w');
+			}
+
+
+			if (!document.querySelector('#shop__menu')) {
+				if (spollerList.classList.contains('active')) {
+					spollerList.classList.remove('active');
+					spollerTitle.classList.remove('arrow');
+					let interval = setInterval(() => {
+						spollerList.style.opacity = 0;
+					}, 100);
+					setTimeout(() => {
+						clearInterval(interval);
+					}, 101);
+				}
+
 			}
 		}
 	});
